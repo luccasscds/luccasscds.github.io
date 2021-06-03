@@ -11,7 +11,7 @@ header
 header {
     width: auto;
 
-    margin: 50px 0 0 0;
+    margin: 10px 0 0 0;
 
     display: flex;
     justify-content: center;
@@ -38,20 +38,16 @@ header {
     font-weight: bold;
     font-style: italic;
 }
-.ig {
+.bio {
     display: flex;
     justify-content: center;
 }
-.ig-text {
-    font-size: 1.5rem;
-    font-weight: normal;
-}
 .bio-text {
     width: 300px;
-    height: 100px;
 
     margin: 10px 0;
     text-align: center;
+
 }
 
 /*===========================
@@ -70,13 +66,16 @@ main
     margin: 10px 0;
     border-radius: 0.5rem;
 
-    transition: 2s;
-
     display: flex;
     align-items: center;
     justify-content: center;
     
     cursor: pointer;
+}
+.button.deactive {
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: none;
 }
 .button:hover {
     background: #5a189a;
