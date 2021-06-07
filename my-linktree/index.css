@@ -2,9 +2,8 @@
     margin: 0;
     padding: 0;
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Serif TC', serif;
 }
-
 /*===========================
 header
 ===========================*/
@@ -21,15 +20,17 @@ header {
     justify-content: center;
     align-items: center;
 
-    background-color: #10002b;
-    clip-path: circle(105px at center center);
+    background-image: linear-gradient(to bottom, #1d3557 ,#457b9d);
+
+    clip-path: circle( at center center);
 }
 .photo{
-    max-width: 200px;
+    max-width: 150px;
 
     display: block;
 
     margin: 5px 0;
+
     clip-path: circle();
 }
 .name {
@@ -39,8 +40,6 @@ header {
     justify-content: center;
 }
 .name-text {
-    font-size: 3rem;
-    font-weight: bold;
     font-style: italic;
 }
 .bio {
@@ -54,26 +53,50 @@ header {
     text-align: center;
 
 }
+/*=======================
+social networks
+=======================*/
+.social-networks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.social {
+    height: 20px;
+}
+.social img {
+    width: 20px;
+    
+    margin: 0 10px;
+    cursor: pointer;
+
+}
 
 /*===========================
 main
 ===========================*/
 .grupos-buttons {
+    height: calc(100vh - 349px);
+    
     display: flex;
     justify-content: center;
+
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 .button {
     min-width: 200px;
     height: 50px;
 
-    background: #10002b;
 
     margin: 10px 0;
     border-radius: 0.5rem;
+    border:  1px solid black;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    color: black;
     
     cursor: pointer;
 }
@@ -86,7 +109,7 @@ main
     background: #5a189a;
     color: white;
 
-    border: 2px solid #7b2cbf;
+    border: none;
 }
 .button-text {
     font-weight: bold;
@@ -95,33 +118,8 @@ a{
     text-decoration: none;
     color: white;
 }
-.social-networks {
-    display: flex;
-    justify-content: center;
-}
-.social {
-    height: 20px;
-    
-    margin: 20px 0;
-}
-.social img {
+.cadeado {
     width: 20px;
-    
-    margin: 0 10px;
-    cursor: pointer;
-}
-
-/*===========================
-Footer
-===========================*/
-.feito-por-mim {
-    display: flex;
-    justify-content: center;
-
-    font-size: 1rem;
-}
-.feito-por-mim p {
-    font-size: 0.6rem;
 }
 
 /*===========================
