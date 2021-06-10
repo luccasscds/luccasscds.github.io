@@ -1,4 +1,4 @@
-console.log('ಠ_ಠ');//master
+console.log('ಠ_ಠ');
 
 const text = document.querySelector('.name-text');
 
