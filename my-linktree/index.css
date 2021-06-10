@@ -40,7 +40,24 @@ header {
     justify-content: center;
 }
 .name-text {
-    font-style: italic;
+    font-style: normal;
+
+    position: relative;
+}
+.name-text::after {
+    content: '_';
+
+    opacity: 1;
+
+    animation: animtext 0.5s infinite;
+}
+@keyframes animtext {
+    0%,100%{
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 .bio {
     display: flex;
