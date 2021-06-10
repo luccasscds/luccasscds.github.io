@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Noto Serif TC', serif;
+}
+/*===========================
+header
+===========================*/
+header {
+    width: auto;
+
+    margin: 10px 0 0 0;
+
+    display: flex;
+    justify-content: center;
+}
+.subbackground-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: linear-gradient(to bottom, #1d3557 ,#457b9d);
+
+    clip-path: circle( at center center);
+}
+.photo{
+    max-width: 150px;
+
+    display: block;
+
+    margin: 5px 0;
+
+    clip-path: circle();
+}
+.name {
+    width: auto;
+
+    display: flex;
+    justify-content: center;
+}
+.name-text {
+    font-style: normal;
+
+    position: relative;
+}
+.name-text::after {
+    content: '_';
+
+    opacity: 1;
+
+    animation: animtext 0.5s infinite;
+}
+@keyframes animtext {
+    0%,100%{
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+.bio {
+    display: flex;
+    justify-content: center;
+}
+.bio-text {
+    width: 300px;
+
+    margin: 10px 0;
+    text-align: center;
+
+}
+/*=======================
+social networks
+=======================*/
+.social-networks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.social {
+    height: 20px;
+}
+.social img {
+    width: 20px;
+    
+    margin: 0 10px;
+    cursor: pointer;
+
+}
+
+/*===========================
+main
+===========================*/
+.grupos-buttons {
+    height: calc(100vh - 349px);
+    
+    display: flex;
+    justify-content: center;
+
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+.button {
+    min-width: 200px;
+    height: 50px;
+
+
+    margin: 10px 0;
+    border-radius: 0.5rem;
+    border:  1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: black;
+    
+    cursor: pointer;
+}
+.button.deactive {
+    background-color: rgba(0, 0, 0, 0.8);
+
+    display: none;
+}
+.button:hover {
+    background: #5a189a;
+    color: white;
+
+    border: none;
+}
+.button-text {
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.cadeado {
+    width: 20px;
+}
+
+/*===========================
+Responsive
+===========================*/
+@media (min-width: 500px) {
+    .button {
+        width: 500px;
+    }
+}
