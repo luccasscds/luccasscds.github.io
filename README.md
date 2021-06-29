@@ -1,5 +1,5 @@
-# 🌳 Meu linktree
+## 🌳 Meu linktree
+- Confira [nesse link](https://luccasscds.github.io/my-linktree/).
 
-## 🔗 Grupos de links
-- meu link tree, veja [nesse link](https://luccasscds.github.io/my-linktree/).
-- meu portfólio, veja [nesse link](https://luccasscds.github.io/Portfolio/).
+## 📂 Meu Portfólio
+- Veja [nesse link](https://luccasscds.github.io/Portfolio/).
