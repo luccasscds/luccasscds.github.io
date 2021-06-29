@@ -80,12 +80,10 @@ const button_menu = {
             document.querySelector('.background-menu').classList.add('menuVertical');
 
             this.ativado = 1;
-            console.log(this.ativado)
         }else {
             document.querySelector('.background-menu').classList.remove('menuVertical');
 
             this.ativado = 0;
-            console.log(this.ativado)
         }
     }
 }
