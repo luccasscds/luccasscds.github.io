@@ -75,10 +75,14 @@ h2 {
     padding-bottom: 1rem;
 }
 .grid-container .container {
-    max-width: 350px;
+    max-width: 300px;
     height: 100%;
     margin: 1rem;
     position: relative;
+}
+.grid-container .container:hover {
+    transform: scale(1.2);
+    z-index: 10;
 }
 img {
     width: 100%;

@@ -1,6 +1,21 @@
 /*===========================
 Responsive
 ===========================*/
+
+@media (max-width: 768px) {
+    .hidden-text {
+        display: block;
+        text-align: start;
+        position: static;
+        opacity: 1;
+        font-weight: normal;
+        
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
 @media (min-width: 500px) {
     .button {
         width: 500px;
