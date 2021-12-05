@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 
+    background-color: black;
+    color: white;
+
     font-family: 'Noto Serif TC', serif;
 }
 /*===========================
@@ -25,7 +28,7 @@ header {
     clip-path: circle( at center center);
 }
 .photo{
-    max-width: 150px;
+    max-width: 200px;
 
     display: block;
 
@@ -47,11 +50,10 @@ header {
     justify-content: center;
 }
 .bio-text {
-    width: 300px;
+    min-width: 300px;
 
     margin: 10px 0;
     text-align: center;
-
 }
 /*=======================
 social networks
@@ -66,62 +68,65 @@ social networks
 }
 .social img {
     width: 20px;
-    
+    border-radius: 0;
     margin: 0 10px;
-    cursor: pointer;
-
 }
 
 /*===========================
 main
 ===========================*/
-.grupos-buttons {
-    height: calc(100vh - 349px);
-    
+.fisrt-section {
+    min-height: 500px;
+    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-
-    border-radius: 0.5rem 0.5rem 0 0;
 }
-.button {
-    min-width: 200px;
-    height: 50px;
 
-
-    margin: 10px 0;
-    border-radius: 0.5rem;
-    border:  1px solid black;
-
+.my-projects {
+    padding: 0 1rem;
+}
+h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+.grid-container {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-
-    color: black;
-    
+    padding-bottom: 1rem;
+}
+.grid-container .container {
+    max-width: 350px;
+    height: 100%;
+    margin: 1rem;
+    position: relative;
+}
+img {
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
     cursor: pointer;
 }
-.button.deactive {
-    background-color: rgba(0, 0, 0, 0.8);
+.hidden-text {
+    display: flex;
+    text-align: center;
+    align-items: center;
 
-    display: none;
+    position: absolute;
+    bottom: 0;
+    
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    height: 100%;
+    font-weight: 600;
 }
-.button:hover {
-    background: #5a189a;
-    color: white;
-
-    border: none;
+.hidden-text:hover {
+    opacity: 1;
+    transition: opacity .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1);
+    cursor: pointer;
 }
-.button-text {
-    font-weight: bold;
-}
-a{
-    text-decoration: none;
-    color: white;
-}
-.cadeado {
-    width: 20px;
-}
-
 /*===========================
 Responsive
 ===========================*/
