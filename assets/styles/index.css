@@ -17,11 +17,19 @@
     clip-path: circle();
 }
 .name {
-    text-align: center;
+    display: flex;
+    justify-content: center;
     padding-top: 1rem;
 }
 .name-text {
     font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2s steps(25);
+}
+@keyframes typing {
+    from {width: 0;}
+    to {width: 262px;}
 }
 .bio {
     text-align: center;
@@ -72,18 +80,17 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    padding-bottom: 1rem;
+    padding: 2rem 0;
 }
 .grid-container .container {
-    max-width: 300px;
+    max-width: 500px;
+    min-width: 300px;
+    min-height: 150px;
     height: 100%;
     margin: 1rem;
     position: relative;
 }
-.grid-container .container:hover {
-    transform: scale(1.2);
-    z-index: 10;
-}
+
 img {
     width: 100%;
     border-radius: 1rem;
@@ -96,12 +103,13 @@ img {
     align-items: center;
 
     position: absolute;
-    bottom: 0;
+    top: 0;
     
     background-color: rgba(0, 0, 0, 0.6);
     opacity: 0;
     height: 100%;
     font-weight: 600;
+    overflow: hidden;
 }
 .hidden-text:hover {
     opacity: 1;
