@@ -28,6 +28,12 @@ function addProject(imageUrl, text, link, tags) {
 
 const projects = [
     {
+        url: "/assets/images/projects/clone-nubank.png",
+        tags: ["react"],
+        description: "O clone de uma aplicação foi, no intuito de apredizado, a maior da américa latina a Nubank.",
+        link: "https://clone-nubank-drab.vercel.app/"
+    },
+    {
         url: "/assets/images/projects/devcompras.png",
         tags: ["html", "css", "js", "node-js"],
         description: "Dev compras é uma aplicação que simula compras de produtos ,sendo possível pesquisar , visualizar e adicionar o produto no carrinho de compras.",
