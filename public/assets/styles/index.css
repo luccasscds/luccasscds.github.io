@@ -1,0 +1,132 @@
+.subbackground-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: linear-gradient(to left, #f35b04 ,#f18701 );
+
+    clip-path: circle( at center center);
+}
+.photo{
+    max-width: clamp(150px,45vw,200px);
+
+    display: block;
+
+    margin: 5px 0;
+
+    clip-path: circle();
+}
+.name {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+.name-text {
+    font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2s steps(25);
+}
+.bio {
+    text-align: center;
+    padding-top: 0.5rem;
+}
+.bio-text {
+    min-width: 300px;
+    text-align: center;
+}
+
+@keyframes typing {
+    from {width: 0;}
+    to {width: 262px;}
+}
+
+/*=======================
+social networks
+=======================*/
+.social-networks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+}
+.social {
+    height: 20px;
+}
+.social img {
+    width: 20px;
+    border-radius: 0;
+    margin: 0 10px;
+}
+
+/*===========================
+main
+===========================*/
+.fisrt-section {
+    min-height: 500px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.my-projects {
+    padding: 0 1rem;
+}
+h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+.grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem 0;
+}
+.grid-container .container {
+    max-width: 500px;
+    min-width: 300px;
+    min-height: 150px;
+    height: 100%;
+    margin: 1rem;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+.hidden-text {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+
+    position: absolute;
+    top: 0;
+    
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    height: 100%;
+    font-weight: 600;
+    overflow: hidden;
+}
+.hidden-text:hover {
+    opacity: 1;
+    transition: opacity .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1);
+    cursor: pointer;
+}
+.wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    background: transparent;
+}
+.icons {
+    width: 45px;
+    background: inherit;
+    margin: 0 -.7rem 1rem;
+}
