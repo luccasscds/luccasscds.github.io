@@ -22,16 +22,16 @@ export function ButtonLink(){
     const [buttons, setButtons] = useState([
         {
             link: "https://www.youtube.com/channel/UC1fH5QWhi_-ibr4dwpxJC9g",
-            imageIcon: "./src/assets/images/icons/youtube-icon.png",
-            actionIcon: "./src/assets/images/icons/chevron-down-icon.png",
+            imageIcon: "/assets/images/icons/youtube-icon.png",
+            actionIcon: "/assets/images/icons/chevron-down-icon.png",
             alt : "YouTube",
             text: "Canal do YouTube.",
             color: ''
         },
         {
             link: "#",
-            imageIcon: "./src/assets/images/icons/coffee-icon.png",
-            actionIcon: "./src/assets/images/icons/link-black-icon.png",
+            imageIcon: "/assets/images/icons/coffee-icon.png",
+            actionIcon: "/assets/images/icons/link-black-icon.png",
             alt : "Pagar um café pra mim!",
             text: "Pagar um café pra mim!",
             color: 'yellow',
@@ -39,14 +39,14 @@ export function ButtonLink(){
         },
         {
             link: "https://luccasscds.github.io/blog/",
-            imageIcon: "./src/assets/images/icons/blog-icon.png",
+            imageIcon: "/assets/images/icons/blog-icon.png",
             alt : "ir para site blog.",
             text: "Blog - Conteúdo mais técnicos.",
             color: ''
         },
         {
             link: "#",
-            imageIcon: "./src/assets/images/icons/store-icon.png",
+            imageIcon: "/assets/images/icons/store-icon.png",
             alt : "loja de produtos.",
             text: "Produtos recomendados.",
             color: ''
@@ -66,7 +66,7 @@ export function ButtonLink(){
                             <Text color={button.color}>{ button.text }</Text>
                         </FirstContent>
                         <LastContent>
-                            <Icon src={button.actionIcon || "./src/assets/images/icons/link-white-icon.png"} alt="Direcionar." />
+                            <Icon src={button.actionIcon || "/assets/images/icons/link-white-icon.png"} alt="Direcionar." />
                         </LastContent>
                     </ContainerButton>
                 );
