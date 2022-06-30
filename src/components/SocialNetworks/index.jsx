@@ -2,9 +2,9 @@ import { Img, Container, Icons, Links } from "./styles";
 import { useState } from "react";
 
 // Import images project
-import iconInstagram from "../../assets/images/icons/instagram.png"
-import iconGithub from "../../assets/images/icons/github.png"
-import iconLinkedIn from "../../assets/images/icons/linkedin.svg"
+import iconInstagram from "/assets/images/icons/instagram.png"
+import iconGithub from "/assets/images/icons/github.png"
+import iconLinkedIn from "/assets/images/icons/linkedin.svg"
 
 export function SocialNetworks() {
     const [links, setLinks] = useState([
