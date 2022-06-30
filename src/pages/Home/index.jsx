@@ -1,14 +1,14 @@
-import {SocialNetworks} from "../../components/SocialNetworks";
-import { Projects } from "../../components/Projects";
+import { SocialNetworks } from "../../components/SocialNetworks";
+import { ButtonLink } from "../../components/ButtonLink";
 import {
     ProfileImg, Wrapper, BackgroundPhoto, ContainerText, NameText,
-    BioText
+    BioText, Main
 } from "./styles";
 
 export function Home(){
     return (
-        <main>
-            <Wrapper class="fisrt-section">
+        <Main>
+            <Wrapper>
                 <div>
                     <BackgroundPhoto>
                         <ProfileImg src="https://github.com/luccasscds.png" alt="foto de perfil"/>
@@ -24,10 +24,9 @@ export function Home(){
                 </ContainerText>
     
                 <SocialNetworks/>
-
             </Wrapper>
-            
-            <Projects />
-        </main>
+
+            <ButtonLink />
+        </Main>
     )
 }

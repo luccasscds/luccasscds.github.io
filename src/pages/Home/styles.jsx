@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
+export const Main = styled.main`
+    background-color: black;
+    padding: 2rem 1rem;
+    height: 100%;
+    min-height: 50rem;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 2rem;
+`;
+
 export const Wrapper = styled.section`
-    min-height: 500px;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
 `;
 
 export const BackgroundPhoto = styled.figure`
