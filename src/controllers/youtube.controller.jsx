@@ -3,7 +3,7 @@ import axios from "axios";
 export const YouTube = {
     async getVideo(){
         const url = new URL('https://www.googleapis.com/youtube/v3/search');
-        url.searchParams.append('key', 'AIzaSyCCiK395Jr2VYXoGpiPraLv6mOtaKLXCsM');
+        url.searchParams.append('key', env.ENV_API_KEY_YOUTUBE);
         url.searchParams.append('channelId', 'UC1fH5QWhi_-ibr4dwpxJC9g');
         url.searchParams.append('type', 'video');
         url.searchParams.append('part', 'snippet');
