@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
     justify-content: start;
     flex-direction: column;
     gap: 1.5rem;
+    margin-top: 1rem;
 `;
 export const ContainerButton = styled.a`
     background: ${props => props.color ? '#FFDD00' : '#4A4747' };

@@ -21,7 +21,6 @@ export function ButtonLink(){
 
     const [buttons, setButtons] = useState([
         {
-            link: "#",
             imageIcon: "/assets/images/icons/coffee-icon.png",
             actionIcon: "/assets/images/icons/link-black-icon.png",
             alt : "Pagar um café pra mim!",
@@ -37,7 +36,6 @@ export function ButtonLink(){
             color: ''
         },
         {
-            link: "#",
             imageIcon: "/assets/images/icons/store-icon.png",
             alt : "loja de produtos.",
             text: "Produtos recomendados.",
@@ -52,7 +50,11 @@ export function ButtonLink(){
             </Video>
             {buttons.map( (button, index) => {
                 return(
-                    <ContainerButton key={index} href={button.link} target={'_blank'} color={button.color}>
+                    <ContainerButton key={index} 
+                        onClick={() => button.link ? window.location.href = button.link : ''} 
+                        target={'_blank'} 
+                        color={button.color}
+                    >
                         <FirstContent>
                             <Icon src={button.imageIcon} alt={button.alt} />
                             <Text color={button.color}>{ button.text }</Text>

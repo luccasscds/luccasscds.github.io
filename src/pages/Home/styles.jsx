@@ -36,12 +36,20 @@ export const ProfileImg = styled.img`
 `;
 
 export const ContainerText = styled.div`
-    text-align: center;
-    padding-top: ${ props => `${props.paddingTop}rem;` };
+    padding-top: ${ ({paddingTop}) => `${paddingTop}rem;` };
+    display: flex;
+    justify-content: center;
 `;
 
 export const NameText = styled.h1`
     font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2s steps(25);
+    @keyframes typing {
+        from {width: 0;}
+        to {width: 262px;}
+    }
 `;
 
 export const BioText = styled.p`
