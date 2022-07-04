@@ -5,10 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({command, mode}) => {
   const envPrefix = "ENV_";
   const env = loadEnv(mode, process.cwd(), envPrefix);
+  // Deixando acessível as variáveis de ambientes por ReactJs.
+  import.meta.env = env;
 
   return {
     plugins: [react()],
     envPrefix,
-    define: { env }
   }
 });

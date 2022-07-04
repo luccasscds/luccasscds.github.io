@@ -21,14 +21,6 @@ export function ButtonLink(){
 
     const [buttons, setButtons] = useState([
         {
-            link: "https://www.youtube.com/channel/UC1fH5QWhi_-ibr4dwpxJC9g",
-            imageIcon: "/assets/images/icons/youtube-icon.png",
-            actionIcon: "/assets/images/icons/chevron-down-icon.png",
-            alt : "YouTube",
-            text: "Canal do YouTube.",
-            color: ''
-        },
-        {
             link: "#",
             imageIcon: "/assets/images/icons/coffee-icon.png",
             actionIcon: "/assets/images/icons/link-black-icon.png",
