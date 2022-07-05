@@ -90,6 +90,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 `,X0=le.div`
     display: flex;
     justify-content: center;
@@ -114,7 +115,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
     border-radius: 1rem;
     width: 480px;
     height: 270px;
-`;function b0(){const[e,t]=z.exports.useState({});z.exports.useEffect(async()=>{const i=/^\d{2}\/\d{2}/g,o=JSON.parse(localStorage.getItem("recentVideo")),[l]=(o==null?void 0:o.date.match(i))||[""],[u]=new Date().toLocaleDateString().match(i);if(o&&l===u)t(o);else{const a=await Q0.getVideo();t(a),localStorage.setItem("recentVideo",JSON.stringify(a))}},[]);const[n,r]=z.exports.useState([{imageIcon:"/assets/images/icons/coffee-icon.png",actionIcon:"/assets/images/icons/link-black-icon.png",alt:"Pagar um caf\xE9 pra mim!",text:"Pagar um caf\xE9 pra mim!",color:"yellow",colorText:{color:"black"}},{link:"https://luccasscds.github.io/blog/",imageIcon:"/assets/images/icons/blog-icon.png",alt:"ir para site blog.",text:"Blog - Conte\xFAdo mais t\xE9cnicos.",color:""},{imageIcon:"/assets/images/icons/store-icon.png",alt:"loja de produtos.",text:"Produtos recomendados.",color:""}]);return ft(Y0,{children:[ft(J0,{href:`https://www.youtube.com/watch?v=${e==null?void 0:e.id}`,target:"_blank",children:[X(Z0,{style:{background:`url(${e==null?void 0:e.thumbnailsUrl}) center`}}),X(Md,{children:e==null?void 0:e.title})]}),n.map((i,o)=>ft(G0,{onClick:()=>i.link?window.open(i.link,"_blank"):"",color:i.color,children:[ft(X0,{children:[X(uc,{src:i.imageIcon,alt:i.alt}),X(K0,{color:i.color,children:i.text})]}),X(q0,{children:X(uc,{src:i.actionIcon||"/assets/images/icons/link-white-icon.png",alt:"Direcionar."})})]},o))]})}const ey=le.main`
+`;function b0(){const[e,t]=z.exports.useState({});z.exports.useEffect(async()=>{const i=/^\d{2}\/\d{2}/g,o=JSON.parse(localStorage.getItem("recentVideo")),[l]=(o==null?void 0:o.date.match(i))||[""],[u]=new Date().toLocaleDateString().match(i);if(o&&l===u)t(o);else{const a=await Q0.getVideo();t(a),localStorage.setItem("recentVideo",JSON.stringify(a))}},[]);const[n,r]=z.exports.useState([{link:"https://luccasscds.github.io/blog/",imageIcon:"/assets/images/icons/blog-icon.png",alt:"ir para site blog.",text:"Blog - Conte\xFAdo mais t\xE9cnicos."}]);return ft(Y0,{children:[ft(J0,{href:`https://www.youtube.com/watch?v=${e==null?void 0:e.id}`,target:"_blank",children:[X(Z0,{style:{background:`url(${e==null?void 0:e.thumbnailsUrl}) center`}}),X(Md,{children:e==null?void 0:e.title})]}),n.map((i,o)=>ft(G0,{onClick:()=>i.link?window.open(i.link,"_blank"):"",color:i.color,children:[ft(X0,{children:[X(uc,{src:i.imageIcon,alt:i.alt}),X(K0,{color:i.color,children:i.text})]}),X(q0,{children:X(uc,{src:i.actionIcon||"/assets/images/icons/link-white-icon.png",alt:"Direcionar."})})]},o))]})}const ey=le.main`
     background-color: black;
     padding: 2rem 1rem;
     height: 100%;
