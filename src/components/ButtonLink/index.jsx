@@ -20,27 +20,25 @@ export function ButtonLink(){
     }, []);
 
     const [buttons, setButtons] = useState([
-        {
-            imageIcon: "/assets/images/icons/coffee-icon.png",
-            actionIcon: "/assets/images/icons/link-black-icon.png",
-            alt : "Pagar um café pra mim!",
-            text: "Pagar um café pra mim!",
-            color: 'yellow',
-            colorText: {color: 'black'}
-        },
+        // {
+        //     imageIcon: "/assets/images/icons/coffee-icon.png",
+        //     actionIcon: "/assets/images/icons/link-black-icon.png",
+        //     alt : "Pagar um café pra mim!",
+        //     text: "Pagar um café pra mim!",
+        //     color: 'yellow',
+        //     colorText: {color: 'black'}
+        // },
         {
             link: "https://luccasscds.github.io/blog/",
             imageIcon: "/assets/images/icons/blog-icon.png",
             alt : "ir para site blog.",
-            text: "Blog - Conteúdo mais técnicos.",
-            color: ''
+            text: "Blog - Conteúdo mais técnicos."
         },
-        {
-            imageIcon: "/assets/images/icons/store-icon.png",
-            alt : "loja de produtos.",
-            text: "Produtos recomendados.",
-            color: ''
-        },
+        // {
+        //     imageIcon: "/assets/images/icons/store-icon.png",
+        //     alt : "loja de produtos.",
+        //     text: "Produtos recomendados."
+        // },
     ]);
     return(
         <Wrapper>

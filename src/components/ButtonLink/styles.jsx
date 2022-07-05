@@ -15,6 +15,7 @@ export const ContainerButton = styled.a`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 `;
 export const FirstContent = styled.div`
     display: flex;
