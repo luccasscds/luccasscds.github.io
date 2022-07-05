@@ -35,15 +35,9 @@ export const Title = styled.p`
     position: absolute;
     top: 1rem;
     left: 1rem;
-    /* opacity: 0; */
 `;
 export const Video = styled.a`
     position: relative;
-    /* &:hover{
-        ${Title}{
-            opacity: 1;
-        }
-    } */
 `;
 export const Thumbnails = styled.div`
     border-radius: 1rem;

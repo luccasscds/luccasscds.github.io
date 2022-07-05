@@ -5,6 +5,7 @@ export const Main = styled.main`
     padding: 2rem 1rem;
     height: 100%;
     min-height: 50rem;
+    min-width: 480px;
 
     display: flex;
     justify-content: center;
