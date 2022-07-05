@@ -51,8 +51,7 @@ export function ButtonLink(){
             {buttons.map( (button, index) => {
                 return(
                     <ContainerButton key={index} 
-                        onClick={() => button.link ? window.location.href = button.link : ''} 
-                        target={'_blank'} 
+                        onClick={() => button.link ? window.open(button.link, '_blank') : ''} 
                         color={button.color}
                     >
                         <FirstContent>
