@@ -1,6 +1,7 @@
 set -e
 
 yarn build
+yarn version --patch
 
 cd dist/
 
