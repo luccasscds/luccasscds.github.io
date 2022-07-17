@@ -1,12 +1,12 @@
 set -e
 
 yarn build
-# yarn version --patch
+yarn version --patch
 
 cd dist/
 
 git init
-git checkout -b main
+git checkout -b production
 git add -A
 git commit -m '🚀 Deploy'
 # git commit --amend -m '🚀 Deploy'
