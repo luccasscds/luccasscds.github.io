@@ -9,10 +9,10 @@ export const Wrapper = styled.div`
 `;
 export const ContainerButton = styled.a`
     background: ${props => props.color ? '#FFDD00' : '#4A4747' };
+    display: ${props => props.hidden ? 'none' : 'flex'};
     border-radius: 16px;
     width: 100%;
     padding: 1rem 0.5rem;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;

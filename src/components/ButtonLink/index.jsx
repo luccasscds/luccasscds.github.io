@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { YouTube } from '../../controllers/youtube.controller';
+import { Data } from './data';
 import { Wrapper, ContainerButton, Icon, Text, FirstContent, LastContent, Video, Title, Thumbnails } from './styles';
 
 export function ButtonLink(){
     const [video, setVideo] = useState({});
+    const [buttons, setButtons] = useState([...Data]);
+
     useEffect( async () => {
         const regExp = /^\d{2}\/\d{2}/g;
         const isRecentVideo = JSON.parse(localStorage.getItem('recentVideo'));
@@ -19,27 +22,6 @@ export function ButtonLink(){
         };
     }, []);
 
-    const [buttons, setButtons] = useState([
-        // {
-        //     imageIcon: "/assets/images/icons/coffee-icon.png",
-        //     actionIcon: "/assets/images/icons/link-black-icon.png",
-        //     alt : "Pagar um café pra mim!",
-        //     text: "Pagar um café pra mim!",
-        //     color: 'yellow',
-        //     colorText: {color: 'black'}
-        // },
-        {
-            link: "https://luccasscds.github.io/blog/",
-            imageIcon: "/assets/images/icons/blog-icon.png",
-            alt : "ir para site blog.",
-            text: "Blog - Conteúdo mais técnicos."
-        },
-        // {
-        //     imageIcon: "/assets/images/icons/store-icon.png",
-        //     alt : "loja de produtos.",
-        //     text: "Produtos recomendados."
-        // },
-    ]);
     return(
         <Wrapper>
             <Video href={`https://www.youtube.com/watch?v=${video?.id}`} target={'_blank'}>
@@ -51,6 +33,7 @@ export function ButtonLink(){
                     <ContainerButton key={index} 
                         onClick={() => button.link ? window.open(button.link, '_blank') : ''} 
                         color={button.color}
+                        hidden={button.hidden}
                     >
                         <FirstContent>
                             <Icon src={button.imageIcon} alt={button.alt} />
