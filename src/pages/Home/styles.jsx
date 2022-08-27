@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
     background-color: black;
-    padding: 2rem 1rem;
-    height: 100%;
+    height: 100vh;
     min-height: 50rem;
     min-width: 30rem;
 
