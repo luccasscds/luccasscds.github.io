@@ -3,8 +3,11 @@ set -e
 yarn build
 yarn version --patch
 
-cd dist/
+# Git
+git push origin --tags
 
+cd dist/
+# Git
 git init
 git checkout -b production
 git add -A
