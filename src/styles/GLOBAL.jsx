@@ -9,6 +9,15 @@ export const Global = createGlobalStyle`
         color: white;
         font-family: sans-serif;
     }
+
+    html {
+        height: 100vh;
+        background: black;
+    }
+
+    body, #root, main {
+        height: inherit;
+    }
     
     a {text-decoration: none;}
 `

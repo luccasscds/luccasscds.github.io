@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const Main = styled.main`
     background-color: black;
-    height: 100vh;
-    min-height: 50rem;
-    min-width: 30rem;
+    min-height: 54rem;
+    min-width: 33rem;
 
     display: flex;
     justify-content: center;

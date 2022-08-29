@@ -4,8 +4,8 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: start;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    gap: 1.5rem 0;
+    margin: 1rem 0 1rem 0;
 `;
 export const ContainerButton = styled.a`
     background: ${props => props.color ? '#FFDD00' : '#4A4747' };
