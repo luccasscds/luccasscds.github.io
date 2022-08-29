@@ -80,8 +80,8 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
     display: flex;
     justify-content: start;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    gap: 1.5rem 0;
+    margin: 1rem 0 1rem 0;
 `,G0=le.a`
     background: ${e=>e.color?"#FFDD00":"#4A4747"};
     display: ${e=>e.hidden?"none":"flex"};
@@ -111,9 +111,8 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
     height: 270px;
 `;function ey(){const[e,t]=z.exports.useState({}),[n,r]=z.exports.useState([...Q0]);return z.exports.useEffect(async()=>{const i=/^\d{2}\/\d{2}/g,o=JSON.parse(localStorage.getItem("recentVideo")),[l]=(o==null?void 0:o.date.match(i))||[""],[u]=new Date().toLocaleDateString().match(i);if(o&&l===u)t(o);else{const a=await W0.getVideo();t(a),localStorage.setItem("recentVideo",JSON.stringify(a))}},[]),ft(Y0,{children:[ft(Z0,{href:`https://www.youtube.com/watch?v=${e==null?void 0:e.id}`,target:"_blank",children:[X(b0,{style:{background:`url(${e==null?void 0:e.thumbnailsUrl}) center`}}),X(J0,{children:e==null?void 0:e.title})]}),n.map((i,o)=>ft(G0,{onClick:()=>i.link?window.open(i.link,"_blank"):"",color:i.color,hidden:i.hidden,children:[ft(X0,{children:[X(uc,{src:i.imageIcon,alt:i.alt}),X(K0,{color:i.color,children:i.text})]}),X(q0,{children:X(uc,{src:i.actionIcon||"/assets/images/icons/link-white-icon.png",alt:"Direcionar."})})]},o))]})}const ty=le.main`
     background-color: black;
-    height: 100vh;
-    min-height: 50rem;
-    min-width: 30rem;
+    min-height: 54rem;
+    min-width: 33rem;
 
     display: flex;
     justify-content: center;
@@ -159,6 +158,15 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
         box-sizing: content-box;
         color: white;
         font-family: sans-serif;
+    }
+
+    html {
+        height: 100vh;
+        background: black;
+    }
+
+    body, #root, main {
+        height: inherit;
     }
     
     a {text-decoration: none;}
