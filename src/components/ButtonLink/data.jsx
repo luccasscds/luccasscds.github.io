@@ -10,7 +10,7 @@ export const Data = [
         hidden: false
     },
     {
-        link: "https://luccasscds.github.io/blog/",
+        link: "https://hexagonal-bucket-7bf.notion.site/Bem-vindo-ao-meu-blog-22923b3b8b8f83bb8d3c81511b8ba0f4",
         imageIcon: "/assets/images/icons/blog-icon.png",
         actionIcon: "",
         alt : "ir para site blog.",

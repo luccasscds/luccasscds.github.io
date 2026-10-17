@@ -5,12 +5,12 @@ import { Wrapper, ContainerButton, Icon, Text, FirstContent, LastContent, Video,
 
 export function ButtonLink(){
     const [video, setVideo] = useState({});
-    const [buttons, setButtons] = useState([...Data]);
+    const buttons = Data;
 
     useEffect( async () => {
         const regExp = /^\d{2}\/\d{2}/g;
         const isRecentVideo = JSON.parse(localStorage.getItem('recentVideo'));
-        const [dayMonth] = isRecentVideo?.date.match(regExp) || [''];
+        const [dayMonth] = isRecentVideo?.date?.match(regExp) || [''];
         const [newDayMonth] = new Date().toLocaleDateString().match(regExp);
         
         if(isRecentVideo && dayMonth === newDayMonth){
