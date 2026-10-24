@@ -1,0 +1,32 @@
+[
+    {
+        "link": "https://link.mercadopago.com.br/github",
+        "imageIcon": "/assets/images/icons/coffee-icon.png",
+        "actionIcon": "/assets/images/icons/link-black-icon.svg",
+        "alt" : "Pagar um café pra mim!",
+        "text": "Pagar um café pra mim!",
+        "color": "yellow",
+        "colorText": "{color: 'black'}",
+        "hidden": false
+    },
+    {
+        "link": "https://hexagonal-bucket-7bf.notion.site/Bem-vindo-ao-meu-blog-22923b3b8b8f83bb8d3c81511b8ba0f4",
+        "imageIcon": "/assets/images/icons/blog-icon.png",
+        "actionIcon": "",
+        "alt" : "ir para site blog.",
+        "text": "Blog - Conteúdo mais técnicos.",
+        "color": "",
+        "colorText": "",
+        "hidden": false
+    },
+    {
+        "link": "",
+        "imageIcon": "/assets/images/icons/store-icon.png",
+        "actionIcon": "",
+        "alt" : "loja de produtos.",
+        "text": "Produtos recomendados.",
+        "color": "",
+        "colorText": "",
+        "hidden": false
+    }
+]

@@ -1,32 +1,55 @@
+import { useEffect, useState } from "react";
+import { GitHub } from "../../controllers/github.controller";
 import { SocialNetworks } from "../../components/SocialNetworks";
 import { ButtonLink } from "../../components/ButtonLink";
+import { SiteNav } from "../../components/SiteNav";
 import {
     ProfileImg, Wrapper, BackgroundPhoto, ContainerText, NameText,
-    BioText, Main
+    BioText, Main, Content
 } from "./styles";
 
 export function Home(){
+    const [profile, setProfile] = useState({});
+
+    useEffect(() => {
+        let isMounted = true;
+
+        GitHub.getProfile().then((githubProfile) => {
+            if (isMounted) {
+                setProfile({
+                    name: githubProfile.name,
+                    avatarUrl: githubProfile.avatarUrl,
+                    bio: githubProfile.bio,
+                });
+            }
+        });
+        return () => { isMounted = false; };
+    }, []);
+
     return (
         <Main>
-            <Wrapper>
-                <div>
-                    <BackgroundPhoto>
-                        <ProfileImg src="https://github.com/luccasscds.png" alt="foto de perfil"/>
-                    </BackgroundPhoto>
-                </div>
+            <SiteNav />
+            <Content>
+                <Wrapper>
+                    <div>
+                        <BackgroundPhoto>
+                            <ProfileImg src={profile.avatarUrl} alt={profile.name}/>
+                        </BackgroundPhoto>
+                    </div>
 
-                <ContainerText paddingTop={1}>
-                    <NameText>Olá, eu sou <strong>Lucas Silva</strong></NameText>
-                </ContainerText>
+                    <ContainerText paddingTop={1}>
+                        <NameText>Olá, eu sou <strong>{profile.name}</strong></NameText>
+                    </ContainerText>
 
-                <ContainerText paddingTop={0.5}>
-                    <BioText>Sou desenvolvedor frontend e busco aprender sempre mais. Além de ajudar a comunidade.</BioText>
-                </ContainerText>
+                    <ContainerText paddingTop={0.75}>
+                        <BioText>{profile.bio}</BioText>
+                    </ContainerText>
     
-                <SocialNetworks/>
-            </Wrapper>
+                    <SocialNetworks/>
+                </Wrapper>
 
-            <ButtonLink />
+                <ButtonLink />
+            </Content>
         </Main>
     )
 }

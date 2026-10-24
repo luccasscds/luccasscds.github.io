@@ -1,30 +1,30 @@
 import { Img, Container, Icons, Links } from "./styles";
-import { useState } from "react";
-
-// Import images project
-import iconInstagram from "/assets/images/icons/instagram.png"
-import iconGithub from "/assets/images/icons/github.png"
-import iconLinkedIn from "/assets/images/icons/linkedin.svg"
+const pathIcon = "/assets/images/icons/";
 
 export function SocialNetworks() {
-    const [links, setLinks] = useState([
-        {
-            url : "https://www.instagram.com/programadorlucas/",
-            src: iconInstagram,
-            title : "link para Instagram"
-        },
+    const links = [
         {
             url : "https://github.com/luccasscds",
-            src: iconGithub,
+            src: pathIcon + "github.svg",
             title : "link para github"
         },
         {
+            url : "https://www.youtube.com/@luccassDev",
+            src: pathIcon + "youtube.svg",
+            title : "link para YouTube"
+        },
+        {
+            url : "https://www.instagram.com/programadorlucas/",
+            src: pathIcon + "instagram.svg",
+            title : "link para Instagram"
+        },
+        {
             url : "https://www.linkedin.com/in/lucassilva21/",
-            src: iconLinkedIn,
+            src: pathIcon + "linkedin.svg",
             title : "link para LinkedIn"
         },
-        
-    ]);
+    ];
+
     return(
         <Container>
             {links.map( (link, index) => {
