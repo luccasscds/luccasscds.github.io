@@ -41,11 +41,11 @@ export function Videos() {
     const [loadingMore, setLoadingMore] = useState(false);
     const [error, setError] = useState("");
 
-    const visibleVideos = videos.filter((video) => {
-        const query = activeSearch.trim().toLowerCase("pt-BR");
+    const visibleVideos = videos?.filter((video) => {
+        const query = activeSearch.trim().toLowerCase();
         if (!query) return true;
         return `${video.title} ${video.description}`
-            .toLowerCase("pt-BR")
+            .toLowerCase()
             .includes(query);
     });
 
@@ -112,12 +112,12 @@ export function Videos() {
 
             {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
 
-            {!loading && !error && visibleVideos.length === 0 && (
+            {!loading && !error && visibleVideos?.length === 0 && (
                 <EmptyState>Nenhum vídeo encontrado{activeSearch ? ` para “${activeSearch}”` : ""}.</EmptyState>
             )}
 
             <Results aria-live="polite">
-                {visibleVideos.map((video) => (
+                {visibleVideos?.map((video) => (
                     <VideoCard key={video.id} href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noreferrer">
                         <VideoImage src={video.thumbnailsUrl} alt="" loading="lazy" />
                         <VideoInfo>
