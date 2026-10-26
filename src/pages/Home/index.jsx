@@ -48,7 +48,7 @@ export function Home(){
                     <SocialNetworks/>
                 </Wrapper>
 
-                <ButtonLink />
+                <ButtonLink excludeBlog />
             </Content>
         </Main>
     )

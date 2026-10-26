@@ -1,8 +1,8 @@
 import Data from './data.json';
 import { Wrapper, ContainerButton, Icon, Text, FirstContent, LastContent } from './styles';
 
-export function ButtonLink(){
-    const buttons = Data.filter((button) => button.link);
+export function ButtonLink({ excludeBlog = false }){
+    const buttons = Data.filter((button) => button.link && !(excludeBlog && button.text.startsWith("Blog")));
 
     return(
         <Wrapper>
