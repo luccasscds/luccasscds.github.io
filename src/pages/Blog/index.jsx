@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import powershell from "highlight.js/lib/languages/powershell";
+import "highlight.js/styles/github-dark.css";
 import { SiteNav } from "../../components/SiteNav";
-import { NotionContent } from "./NotionContent";
 import {
-    BackButton, BlogContent, BlogMain, EmptyState, ErrorMessage,
+    BackButton, BlogContent, BlogMain, BlogMarkdown, EmptyState, ErrorMessage,
     Loading, LoadMoreButton, PostList, PostListItem, PostTitleButton,
 } from "./styles";
 
 export function Blog() {
+    const { postId } = useParams();
+    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [nextCursors, setNextCursors] = useState([]);
-    const [selectedPost, setSelectedPost] = useState(null);
-    const [postBlocks, setPostBlocks] = useState([]);
+    const [postMarkdown, setPostMarkdown] = useState("");
+    const [postTitle, setPostTitle] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [postLoading, setPostLoading] = useState(false);
@@ -19,7 +26,13 @@ export function Blog() {
     const [loadMoreError, setLoadMoreError] = useState("");
 
     useEffect(() => {
+        if (postId || posts.length > 0) {
+            setLoading(false);
+            return undefined;
+        }
+
         let active = true;
+        setLoading(true);
         axios.get("/api/notion")
             .then(({ data }) => {
                 if (!active) return;
@@ -31,28 +44,34 @@ export function Blog() {
             })
             .finally(() => { if (active) setLoading(false); });
         return () => { active = false; };
-    }, []);
+    }, [postId, posts.length]);
 
-    async function openPost(post) {
-        setSelectedPost(post);
-        setPostBlocks([]);
+    useEffect(() => {
+        if (!postId) {
+            setPostMarkdown("");
+            setPostTitle("");
+            setPostError("");
+            setPostLoading(false);
+            return undefined;
+        }
+
+        let active = true;
+        setPostMarkdown("");
+        setPostTitle("");
         setPostError("");
         setPostLoading(true);
-        try {
-            const { data } = await axios.get("/api/notion", { params: { postId: post.id } });
-            setPostBlocks(data.children || []);
-        } catch (requestError) {
-            setPostError(requestError.response?.data?.error || "Não foi possível carregar este post.");
-        } finally {
-            setPostLoading(false);
-        }
-    }
-
-    function backToPosts() {
-        setSelectedPost(null);
-        setPostBlocks([]);
-        setPostError("");
-    }
+        axios.get("/api/notion", { params: { postId } })
+            .then(({ data }) => {
+                if (!active) return;
+                setPostTitle(data.title || "Post");
+                setPostMarkdown(data.markdown || "");
+            })
+            .catch((requestError) => {
+                if (active) setPostError(requestError.response?.data?.error || "Não foi possível carregar este post.");
+            })
+            .finally(() => { if (active) setPostLoading(false); });
+        return () => { active = false; };
+    }, [postId]);
 
     async function loadMorePosts() {
         if (nextCursors.length === 0) return;
@@ -75,6 +94,10 @@ export function Blog() {
         }
     }
 
+    const selectedPost = postId
+        ? { id: postId, title: postTitle || posts.find((post) => post.id === postId)?.title || "Post" }
+        : null;
+
     return (
         <BlogMain>
             <SiteNav />
@@ -84,12 +107,24 @@ export function Blog() {
 
                 {!loading && !error && selectedPost && (
                     <>
-                        <BackButton type="button" onClick={backToPosts}>← Todos os posts</BackButton>
+                        <BackButton type="button" onClick={() => navigate("/blog")}>← Todos os posts</BackButton>
                         <h2>{selectedPost.title}</h2>
                         {postLoading && <Loading role="status">Carregando post…</Loading>}
                         {postError && <ErrorMessage role="alert">{postError}</ErrorMessage>}
-                        {!postLoading && !postError && postBlocks.length > 0 && <NotionContent blocks={postBlocks} />}
-                        {!postLoading && !postError && postBlocks.length === 0 && <EmptyState>Este post não tem conteúdo.</EmptyState>}
+                        {!postLoading && !postError && postMarkdown && (
+                            <BlogMarkdown>
+                                <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[[rehypeHighlight, {
+                                        languages: { powershell },
+                                        ignoreMissing: true,
+                                    }]]}
+                                >
+                                    {postMarkdown}
+                                </ReactMarkdown>
+                            </BlogMarkdown>
+                        )}
+                        {!postLoading && !postError && !postMarkdown && <EmptyState>Este post não tem conteúdo.</EmptyState>}
                     </>
                 )}
 
@@ -100,7 +135,7 @@ export function Blog() {
                     <PostList aria-label="Posts do blog">
                         {posts.map((post) => (
                             <PostListItem key={post.id}>
-                                <PostTitleButton type="button" onClick={() => openPost(post)}>
+                                <PostTitleButton type="button" onClick={() => navigate(`/blog/${post.id}`)}>
                                     {post.title}
                                 </PostTitleButton>
                             </PostListItem>

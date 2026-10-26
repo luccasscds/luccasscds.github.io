@@ -30,21 +30,11 @@ export const BlogContent = styled.article`
     summary { cursor: pointer; font-weight: 600; }
 `;
 
-export const Block = styled.p`
-    margin: 0 0 1rem;
-`;
-
-export const InlineCode = styled.code`
-    padding: 0.12rem 0.35rem;
-    border-radius: 4px;
-    background: var(--color-surface);
-    font-size: 0.9em;
-`;
-
-export const Link = styled.a`
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+export const BlogMarkdown = styled.div`
+    table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+    th, td { padding: 0.5rem 0.75rem; border: 1px solid var(--color-border-subtle); text-align: left; }
+    img { max-width: 100%; height: auto; border-radius: 8px; }
+    input[type="checkbox"] { margin-right: 0.5rem; }
 `;
 
 export const PostList = styled.ul`
