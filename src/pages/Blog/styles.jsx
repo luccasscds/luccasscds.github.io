@@ -37,6 +37,21 @@ export const BlogMarkdown = styled.div`
     input[type="checkbox"] { margin-right: 0.5rem; }
 `;
 
+export const SearchInput = styled.input`
+    width: 100%;
+    min-height: 48px;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    outline: none;
+    color: var(--color-text);
+    background: var(--color-nav-background);
+    font: inherit;
+    &::placeholder { color: var(--color-text-muted); opacity: 1; }
+    &:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-glow); }
+`;
+
 export const PostList = styled.ul`
     display: grid;
     gap: 0.75rem;

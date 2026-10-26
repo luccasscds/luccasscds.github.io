@@ -28,12 +28,18 @@ function getTitle(page) {
     return property?.title?.map((item) => item.plain_text).join("") || "Sem título";
 }
 
-async function queryDatabase(token, startCursor = "") {
+async function queryDatabase(token, startCursor = "", searchTerm = "") {
     const body = {
         page_size: POSTS_PER_PAGE,
         sorts: [{ timestamp: "created_time", direction: "descending" }],
     };
     if (startCursor) body.start_cursor = startCursor;
+    if (searchTerm) {
+        body.filter = {
+            property: "title",
+            title: { contains: searchTerm },
+        };
+    }
     const data = await notionRequest(`/databases/${NOTION_DATABASE_ID}/query`, token, {
         method: "POST",
         body: JSON.stringify(body),
@@ -63,6 +69,7 @@ export default async function handler(request, response) {
     try {
         const postId = typeof request.query.postId === "string" ? request.query.postId : "";
         const cursor = typeof request.query.cursor === "string" ? request.query.cursor : "";
+        const searchTerm = typeof request.query.q === "string" ? request.query.q.trim() : "";
         if (postId && !/^[a-f0-9-]{32,36}$/i.test(postId)) {
             return response.status(400).json({ error: "ID de post inválido." });
         }
@@ -83,10 +90,10 @@ export default async function handler(request, response) {
         }
 
         if (cursor) {
-            return response.status(200).json(await queryDatabase(token, cursor));
+            return response.status(200).json(await queryDatabase(token, cursor, searchTerm));
         }
 
-        const result = await queryDatabase(token);
+        const result = await queryDatabase(token, "", searchTerm);
         return response.status(200).json({
             posts: result.posts,
             nextCursors: result.nextCursor ? [{ nextCursor: result.nextCursor }] : [],

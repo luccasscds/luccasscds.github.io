@@ -9,7 +9,7 @@ import "highlight.js/styles/github-dark.css";
 import { SiteNav } from "../../components/SiteNav";
 import {
     BackButton, BlogContent, BlogMain, BlogMarkdown, EmptyState, ErrorMessage,
-    Loading, LoadMoreButton, PostList, PostListItem, PostTitleButton,
+    Loading, LoadMoreButton, PostList, PostListItem, PostTitleButton, SearchInput,
 } from "./styles";
 
 export function Blog() {
@@ -19,6 +19,8 @@ export function Blog() {
     const [nextCursors, setNextCursors] = useState([]);
     const [postMarkdown, setPostMarkdown] = useState("");
     const [postTitle, setPostTitle] = useState("");
+    const [search, setSearch] = useState("");
+    const [activeSearch, setActiveSearch] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [postLoading, setPostLoading] = useState(false);
@@ -26,14 +28,17 @@ export function Blog() {
     const [loadMoreError, setLoadMoreError] = useState("");
 
     useEffect(() => {
-        if (postId || posts.length > 0) {
+        if (postId) {
             setLoading(false);
             return undefined;
         }
 
         let active = true;
         setLoading(true);
-        axios.get("/api/notion")
+        setError("");
+        setPosts([]);
+        setNextCursors([]);
+        axios.get("/api/notion", { params: activeSearch ? { q: activeSearch } : {} })
             .then(({ data }) => {
                 if (!active) return;
                 setPosts(data.posts || []);
@@ -44,7 +49,7 @@ export function Blog() {
             })
             .finally(() => { if (active) setLoading(false); });
         return () => { active = false; };
-    }, [postId, posts.length]);
+    }, [postId, activeSearch]);
 
     useEffect(() => {
         if (!postId) {
@@ -80,7 +85,7 @@ export function Blog() {
         setLoadMoreError("");
         try {
             const { data } = await axios.get("/api/notion", {
-                params: { cursor: next.nextCursor },
+                params: { cursor: next.nextCursor, ...(activeSearch ? { q: activeSearch } : {}) },
             });
             setPosts((current) => [...current, ...(data.posts || [])]);
             setNextCursors([
@@ -94,6 +99,11 @@ export function Blog() {
         }
     }
 
+    function submitSearch(event) {
+        event.preventDefault();
+        setActiveSearch(search.trim());
+    }
+
     const selectedPost = postId
         ? { id: postId, title: postTitle || posts.find((post) => post.id === postId)?.title || "Post" }
         : null;
@@ -102,6 +112,17 @@ export function Blog() {
         <BlogMain>
             <SiteNav />
             <BlogContent>
+                {!postId && (
+                    <form onSubmit={submitSearch}>
+                        <SearchInput
+                            type="search"
+                            value={search}
+                            onChange={(event) => setSearch(event.target.value)}
+                            placeholder="Pesquisar posts e pressione Enter"
+                            aria-label="Pesquisar posts pelo título"
+                        />
+                    </form>
+                )}
                 {loading && <Loading role="status">Carregando conteúdo…</Loading>}
                 {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
 
@@ -129,7 +150,11 @@ export function Blog() {
                 )}
 
                 {!loading && !error && !selectedPost && posts.length === 0 && (
-                    <EmptyState>Este blog ainda não tem posts. Verifique se a integração tem acesso à database no Notion.</EmptyState>
+                    <EmptyState>
+                        {activeSearch
+                            ? `Nenhum post encontrado para “${activeSearch}”.`
+                            : "Este blog ainda não tem posts. Verifique se a integração tem acesso à database no Notion."}
+                    </EmptyState>
                 )}
                 {!loading && !error && !selectedPost && posts.length > 0 && (
                     <PostList aria-label="Posts do blog">
