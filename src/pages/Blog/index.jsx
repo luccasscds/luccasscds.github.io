@@ -7,10 +7,7 @@ import rehypeHighlight from "rehype-highlight";
 import powershell from "highlight.js/lib/languages/powershell";
 import "highlight.js/styles/github-dark.css";
 import { SiteNav } from "../../components/SiteNav";
-import {
-    BackButton, BlogContent, BlogMain, BlogMarkdown, EmptyState, ErrorMessage,
-    Loading, LoadMoreButton, PostList, PostListItem, PostTitleButton, SearchInput,
-} from "./styles";
+import "./styles.css";
 
 export function Blog() {
     const { postId } = useParams();
@@ -109,12 +106,12 @@ export function Blog() {
         : null;
 
     return (
-        <BlogMain>
+        <main className="blog-main">
             <SiteNav />
-            <BlogContent>
+            <article className="blog-content">
                 {!postId && (
                     <form onSubmit={submitSearch}>
-                        <SearchInput
+                        <input className="blog-search-input"
                             type="search"
                             value={search}
                             onChange={(event) => setSearch(event.target.value)}
@@ -123,17 +120,17 @@ export function Blog() {
                         />
                     </form>
                 )}
-                {loading && <Loading role="status">Carregando conteúdo…</Loading>}
-                {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
+                {loading && <p className="blog-loading" role="status">Carregando conteúdo…</p>}
+                {error && <p className="blog-error" role="alert">{error}</p>}
 
                 {!loading && !error && selectedPost && (
                     <>
-                        <BackButton type="button" onClick={() => navigate("/blog")}>← Todos os posts</BackButton>
+                        <button className="blog-back-button" type="button" onClick={() => navigate("/blog")}>← Todos os posts</button>
                         <h2>{selectedPost.title}</h2>
-                        {postLoading && <Loading role="status">Carregando post…</Loading>}
-                        {postError && <ErrorMessage role="alert">{postError}</ErrorMessage>}
+                        {postLoading && <p className="blog-loading" role="status">Carregando post…</p>}
+                        {postError && <p className="blog-error" role="alert">{postError}</p>}
                         {!postLoading && !postError && postMarkdown && (
-                            <BlogMarkdown>
+                            <div className="blog-markdown">
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[[rehypeHighlight, {
@@ -143,39 +140,39 @@ export function Blog() {
                                 >
                                     {postMarkdown}
                                 </ReactMarkdown>
-                            </BlogMarkdown>
+                            </div>
                         )}
-                        {!postLoading && !postError && !postMarkdown && <EmptyState>Este post não tem conteúdo.</EmptyState>}
+                        {!postLoading && !postError && !postMarkdown && <p className="blog-loading">Este post não tem conteúdo.</p>}
                     </>
                 )}
 
                 {!loading && !error && !selectedPost && posts.length === 0 && (
-                    <EmptyState>
+                    <p className="blog-loading">
                         {activeSearch
                             ? `Nenhum post encontrado para “${activeSearch}”.`
                             : "Este blog ainda não tem posts. Verifique se a integração tem acesso à database no Notion."}
-                    </EmptyState>
+                    </p>
                 )}
                 {!loading && !error && !selectedPost && posts.length > 0 && (
-                    <PostList aria-label="Posts do blog">
+                    <ul className="blog-post-list" aria-label="Posts do blog">
                         {posts.map((post) => (
-                            <PostListItem key={post.id}>
-                                <PostTitleButton type="button" onClick={() => navigate(`/blog/${post.id}`)}>
+                            <li className="blog-post-item" key={post.id}>
+                                <button className="blog-post-title" type="button" onClick={() => navigate(`/blog/${post.id}`)}>
                                     {post.title}
-                                </PostTitleButton>
-                            </PostListItem>
+                                </button>
+                            </li>
                         ))}
-                    </PostList>
+                    </ul>
                 )}
                 {!loading && !error && !selectedPost && nextCursors.length > 0 && (
                     <>
-                        {loadMoreError && <ErrorMessage role="alert">{loadMoreError}</ErrorMessage>}
-                        <LoadMoreButton type="button" disabled={postLoading} onClick={loadMorePosts}>
+                        {loadMoreError && <p className="blog-error" role="alert">{loadMoreError}</p>}
+                        <button className="blog-load-more" type="button" disabled={postLoading} onClick={loadMorePosts}>
                             {postLoading ? "Carregando…" : "Carregar mais posts"}
-                        </LoadMoreButton>
+                        </button>
                     </>
                 )}
-            </BlogContent>
-        </BlogMain>
+            </article>
+        </main>
     );
 }

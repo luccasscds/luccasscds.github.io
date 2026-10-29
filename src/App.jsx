@@ -1,11 +1,10 @@
 import { AppRouters } from "./router";
-import {Global} from "./styles/GLOBAL";
+import "./styles/global.css";
 
 function App() {
 
   return (
     <>
-      <Global/>
       <AppRouters/>
     </>
   )

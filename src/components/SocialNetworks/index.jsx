@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GitHub } from "../../controllers/github.controller";
-import { Img, Container, Icons, Links } from "./styles";
+import "./styles.css";
 const pathIcon = "/assets/images/icons/";
 
 export function SocialNetworks() {
@@ -15,18 +15,18 @@ export function SocialNetworks() {
     }, []);
 
     return(
-        <Container>
+        <div className="social-networks">
             {links.map( (link, index) => {
                 const pathSvg = `${pathIcon}${link.name?.toLowerCase()}.svg`;
                 const src = /^https?:\/\//.test(link.src) ? link.src : pathSvg;
                 return(
-                    <Icons key={index}>
-                        <Links href={link.url} target={"_blank"}>
-                            <Img src={src} alt={link.title} title={link.title} />
-                        </Links>
-                    </Icons>
+                    <div className="social-networks__item" key={index}>
+                        <a className="social-networks__link" href={link.url} target="_blank" rel="noreferrer">
+                            <img className="social-networks__image" src={src} alt={link.title} title={link.title} />
+                        </a>
+                    </div>
                 )
             })}
-        </Container>
+        </div>
     );
 }

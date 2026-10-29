@@ -3,10 +3,7 @@ import { GitHub } from "../../controllers/github.controller";
 import { SocialNetworks } from "../../components/SocialNetworks";
 import { ButtonLink } from "../../components/ButtonLink";
 import { SiteNav } from "../../components/SiteNav";
-import {
-    ProfileImg, Wrapper, BackgroundPhoto, ContainerText, NameText,
-    BioText, Main, Content
-} from "./styles";
+import "./styles.css";
 
 export function Home(){
     const [profile, setProfile] = useState({});
@@ -27,29 +24,29 @@ export function Home(){
     }, []);
 
     return (
-        <Main>
+        <main className="home-main">
             <SiteNav />
-            <Content>
-                <Wrapper>
+            <div className="home-content">
+                <section className="home-profile">
                     <div>
-                        <BackgroundPhoto>
-                            <ProfileImg src={profile.avatarUrl} alt={profile.name}/>
-                        </BackgroundPhoto>
+                        <figure className="home-photo">
+                            <img src={profile.avatarUrl} alt={profile.name}/>
+                        </figure>
                     </div>
 
-                    <ContainerText paddingTop={1}>
-                        <NameText>Olá, eu sou <strong>{profile.name}</strong></NameText>
-                    </ContainerText>
+                    <div className="home-text home-text--name">
+                        <h1 className="home-name">Olá, eu sou <strong>{profile.name}</strong></h1>
+                    </div>
 
-                    <ContainerText paddingTop={0.75}>
-                        <BioText>{profile.bio}</BioText>
-                    </ContainerText>
+                    <div className="home-text home-text--bio">
+                        <p className="home-bio">{profile.bio}</p>
+                    </div>
     
                     <SocialNetworks/>
-                </Wrapper>
+                </section>
 
                 <ButtonLink excludeBlog />
-            </Content>
-        </Main>
+            </div>
+        </main>
     )
 }

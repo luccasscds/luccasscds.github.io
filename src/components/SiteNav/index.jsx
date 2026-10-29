@@ -1,16 +1,16 @@
-import { Icon } from "../ButtonLink/styles";
-import { LinkItem, Navigation, NavWrapper } from "./styles";
+import { NavLink } from "react-router-dom";
+import "./styles.css";
 
 export function SiteNav() {
     return (
-        <NavWrapper>
-            <Navigation aria-label="Navegação principal">
-                <LinkItem to="/" end aria-label="Home" title="Home">
-                    <Icon src={"/assets/images/icons/home.svg"} alt={"Home"} style={{ margin: 0, width: 18 }}/>
-                </LinkItem>
-                <LinkItem to="/videos">Videos</LinkItem>
-                <LinkItem to="/blog">Blog</LinkItem>
-            </Navigation>
-        </NavWrapper>
+        <header className="site-nav-wrapper">
+            <nav className="site-nav" aria-label="Navegação principal">
+                <NavLink className="site-nav__link" to="/" end aria-label="Home" title="Home">
+                    <img className="site-nav__home-icon" src="/assets/images/icons/home.svg" alt="Home" />
+                </NavLink>
+                <NavLink className="site-nav__link" to="/videos">Videos</NavLink>
+                <NavLink className="site-nav__link" to="/blog">Blog</NavLink>
+            </nav>
+        </header>
     );
 }

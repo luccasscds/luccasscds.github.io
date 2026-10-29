@@ -1,11 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { YouTube } from "../../controllers/youtube.controller";
 import { SiteNav } from "../../components/SiteNav";
-import {
-    Count, EmptyState, ErrorMessage, LoadMoreButton, Main, Results,
-    SearchForm, SearchInput, VideoCard, VideoDescription, VideoDetails,
-    VideoImage, VideoInfo, VideoTitle
-} from "./styles";
+import "./styles.css";
 
 let videosPageCache = null;
 
@@ -93,49 +89,49 @@ export function Videos() {
     }
 
     return (
-        <Main>
+        <main className="videos-main">
             <SiteNav />
 
-            <SearchForm onSubmit={handleSearch} role="search">
-                <SearchInput
+            <form className="videos-search-form" onSubmit={handleSearch} role="search">
+                <input className="videos-search-input"
                     type="search"
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
                     placeholder="Pesquise por vídeos"
                     aria-label="Pesquise por vídeos"
                 />
-            </SearchForm>
+            </form>
 
-            <Count>
+            <p className="videos-count">
                 {totalResults > 0 && <>Total de {totalResults} vídeos no canal</>}
-            </Count>
+            </p>
 
-            {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
+            {error && <p className="videos-error" role="alert">{error}</p>}
 
             {!loading && !error && visibleVideos?.length === 0 && (
-                <EmptyState>Nenhum vídeo encontrado{activeSearch ? ` para “${activeSearch}”` : ""}.</EmptyState>
+                <p className="videos-empty">Nenhum vídeo encontrado{activeSearch ? ` para “${activeSearch}”` : ""}.</p>
             )}
 
-            <Results aria-live="polite">
+            <section className="videos-results" aria-live="polite">
                 {visibleVideos?.map((video) => (
-                    <VideoCard key={video.id} href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noreferrer">
-                        <VideoImage src={video.thumbnailsUrl} alt="" loading="lazy" />
-                        <VideoInfo>
-                            <VideoTitle>{video.title}</VideoTitle>
-                            <VideoDescription>{video.description}</VideoDescription>
-                            <VideoDetails>{relativeDate(video.publishedAt)}</VideoDetails>
-                        </VideoInfo>
-                    </VideoCard>
+                    <a className="video-card" key={video.id} href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noreferrer">
+                        <img className="video-image" src={video.thumbnailsUrl} alt="" loading="lazy" />
+                        <div className="video-info">
+                            <h2 className="video-title">{video.title}</h2>
+                            <p className="video-description">{video.description}</p>
+                            <span className="video-details">{relativeDate(video.publishedAt)}</span>
+                        </div>
+                    </a>
                 ))}
-            </Results>
+            </section>
 
-            {loading && <EmptyState role="status">Carregando vídeos…</EmptyState>}
+            {loading && <p className="videos-empty" role="status">Carregando vídeos…</p>}
 
             {nextPageToken && !loading && (
-                <LoadMoreButton type="button" disabled={loadingMore} onClick={() => fetchVideos(nextPageToken, true)}>
+                <button className="videos-load-more" type="button" disabled={loadingMore} onClick={() => fetchVideos(nextPageToken, true)}>
                     {loadingMore ? "Carregando…" : "Carregar mais vídeos"}
-                </LoadMoreButton>
+                </button>
             )}
-        </Main>
+        </main>
     );
 }
