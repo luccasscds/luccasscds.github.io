@@ -1,8 +1,5 @@
 import axios from "axios";
 
-const GITHUB_API_URL = "https://api.github.com/users/luccasscds";
-const PROFILE_LINKS_URL = "https://raw.githubusercontent.com/luccasscds/Luccasscds/main/profile.json";
-
 let profileCache = null;
 let socialLinksCache = null;
 const FALLBACK_PROFILE = {
@@ -16,7 +13,7 @@ export const GitHub = {
         try {
             if (profileCache) return profileCache;
     
-            const { data } = await axios.get(GITHUB_API_URL);
+            const { data } = await axios.get("/api/github", { params: { resource: "profile" } });
     
             profileCache = {
                 name: data.name || data.login || FALLBACK_PROFILE.name,
@@ -35,11 +32,10 @@ export const GitHub = {
         try {
             if (socialLinksCache) return socialLinksCache;
 
-            const { data } = await axios.get(PROFILE_LINKS_URL);
+            const { data } = await axios.get("/api/github", { params: { resource: "links" } });
             if (!Array.isArray(data.socials)) throw new Error("O profile.json não contém uma lista socials válida.");
 
-            const socialLinks = data.socials.filter((link) => link.name && link.url && link.src && link.title);
-            socialLinksCache = socialLinks;
+            socialLinksCache = data.socials;
             return socialLinksCache;
         } catch (error) {
             console.error("Não foi possível carregar os links sociais do GitHub.", error);
